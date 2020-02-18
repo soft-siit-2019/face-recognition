@@ -9,11 +9,14 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
 race_model_path = './models/cnn_race_p2.joblib'
+gender_model_path = './models/cnn_gender_p2.joblib'
 
 # models
 model_race = load(race_model_path)
+model_gender = load(gender_model_path)
 
 race_array = ['CAUCASIAN', 'BLACK', 'ASIAN', 'INDIAN', 'OTHER', 'OTHER']
+gender_array = ['MALE', 'FEMALE']
 
 video = cv2.VideoCapture(0)
 
@@ -40,10 +43,15 @@ while True:
         img_face = img_face / 255.0
 
         test_race = model_race.predict(np.array([img_face]))
+        test_gender = model_gender.predict(np.array([img_face]))
 
         race_num = np.argmax(test_race)
+        gender_num = np.argmax(test_gender)
 
         text += race_array[race_num]
+
+        text += (', ' + gender_array[gender_num])
+
 
         cv2.putText(frame, text, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         print(text)
