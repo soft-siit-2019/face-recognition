@@ -24,7 +24,7 @@ def reshape_data(input_data):
     return input_data.reshape((nsamples, nx*ny*depth))
 
 
-UTK_PATH = '.' + os.path.sep + 'UTKface_inthewild' + os.path.sep + 'part2' + os.path.sep
+UTK_PATH = '../data' + os.path.sep + 'UTKface_inthewild' + os.path.sep + 'part2' + os.path.sep
 detector = dlib.get_frontal_face_detector()
 
 age = []
@@ -226,4 +226,4 @@ model.fit_generator(datagen.flow(X_train,y_train, batch_size=128),
                               ,callbacks=[learning_rate_reduction])
 
 
-dump(model, './models/cnn_age_p1_p2.joblib')
+dump(model, '../models/cnn_age_p2.joblib')

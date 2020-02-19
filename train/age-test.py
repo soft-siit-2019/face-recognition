@@ -8,11 +8,11 @@ import time
 
 from keras_preprocessing.image import ImageDataGenerator
 
-TRAIN_IMAGES_PATH = './data/train'
-VALIDATION_IMAGES_PATH = './data/val'
+TRAIN_IMAGES_PATH = '../data/train'
+VALIDATION_IMAGES_PATH = '../data/val'
 
-LABELS_PATH = 'fairface_label_train.csv'
-VAL_LABELS_PATH = 'fairface_label_val.csv'
+LABELS_PATH = '../data/fairface_label_train.csv'
+VAL_LABELS_PATH = '../data/fairface_label_val.csv'
 
 ages = ['0-2', '3-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', 'more than 70']
 dftrain = pd.read_csv(LABELS_PATH)
@@ -162,7 +162,7 @@ columns=ages
 #columns should be the same order of y_col
 
 
-dump(model, 'fairface_age_cnn.joblib')
+dump(model, '../models/fairface_age_cnn.joblib')
 end = time.time()
 
 print('Ukupno vreme: ',end - start)
